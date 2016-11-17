@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var resume_dal = require('../model/resume_dal');
+var account_dal = require('../model/account_dal');
 
 
 // View All resumes
@@ -29,6 +30,66 @@ router.get('/', function(req, res){
            else {
                res.render('resume/resumeViewById', {'result': result});
            }
+        });
+    }
+});
+
+
+
+
+
+
+
+// Return the add a new resume form
+router.get('/add', function(req, res){
+    // passing all the query parameters (req.query) to the insert function instead of each individually
+    account_dal.getAll(function(err,result) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.render('resume/resumeAdd', {'account': result});
+        }
+    });
+});
+
+// View the school for the given id
+router.get('/insert', function(req, res){
+    // simple validation
+    if(req.query.resume_name == null) {
+        res.send('Resume Name must be provided.');
+    }
+    else if(req.query.account_id == null) {
+        res.send('An Account must be selected');
+    }
+    else {
+        // passing all the query parameters (req.query) to the insert function instead of each individually
+        school_dal.insert(req.query, function(err,result) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/resume/all');
+            }
+        });
+    }
+});
+
+// Delete a school for the given school_id
+router.get('/delete', function(req, res){
+    if(req.query.school_id == null) {
+        res.send('school_id is null');
+    }
+    else {
+        school_dal.delete(req.query.school_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/school/all');
+            }
         });
     }
 });
