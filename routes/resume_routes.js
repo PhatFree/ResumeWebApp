@@ -64,7 +64,7 @@ router.get('/insert', function(req, res){
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        school_dal.insert(req.query, function(err,result) {
+        resume_dal.insert(req.query, function(err) {
             if (err) {
                 res.send(err);
             }
@@ -78,17 +78,17 @@ router.get('/insert', function(req, res){
 
 // Delete a school for the given school_id
 router.get('/delete', function(req, res){
-    if(req.query.school_id == null) {
-        res.send('school_id is null');
+    if(req.query.resume_id == null) {
+        res.send('resume_id is null');
     }
     else {
-        school_dal.delete(req.query.school_id, function(err, result){
+        resume_dal.delete(req.query.resume_id, function(err, result){
             if(err) {
                 res.send(err);
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
-                res.redirect(302, '/school/all');
+                res.redirect(302, '/resume/all');
             }
         });
     }

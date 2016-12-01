@@ -55,7 +55,7 @@ router.get('/insert', function(req, res){
 
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        account_dal.insert(req.query, function(err,result) {
+        account_dal.insert(req.query, function(err) {
             if (err) {
                 res.send(err);
             }
@@ -73,7 +73,7 @@ router.get('/delete', function(req, res){
         res.send('account_id is null');
     }
     else {
-        account_dal.delete(req.query.account_id, function(err, result){
+        account_dal.delete(req.query.account_id, function(err){
             if(err) {
                 res.send(err);
             }
