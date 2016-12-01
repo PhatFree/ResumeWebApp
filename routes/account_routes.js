@@ -16,7 +16,7 @@ router.get('/all', function(req, res) {
 
 });
 
-// View the school for the given id
+// View the account for the given id
 router.get('/', function(req, res){
     if(req.query.account_id == null) {
         res.send('account_id is null');
@@ -29,6 +29,58 @@ router.get('/', function(req, res){
            else {
                res.render('account/accountViewById', {'result': result});
            }
+        });
+    }
+});
+
+
+// Return the add a new account form
+router.get('/add', function(req,res){
+
+    res.render('account/accountAdd');
+});
+
+// View the account for the given id
+router.get('/insert', function(req, res){
+    // simple validation
+    if(req.query.email == null) {
+        res.send('Email must be provided.');
+    }
+    else if(req.query.first_name == null) {
+        res.send('First Name must be provided');
+    }
+    else if(req.query.last_name == null) {
+        res.send('Last Name must be provided');
+        }
+
+    else {
+        // passing all the query parameters (req.query) to the insert function instead of each individually
+        account_dal.insert(req.query, function(err,result) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/account/all');
+            }
+        });
+    }
+});
+
+// Delete a account for the given account_id
+router.get('/delete', function(req, res){
+    if(req.query.account_id == null) {
+        res.send('account_id is null');
+    }
+    else {
+        account_dal.delete(req.query.account_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/account/all');
+            }
         });
     }
 });

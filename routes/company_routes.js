@@ -44,10 +44,8 @@ router.get('/insert', function(req, res){
     // simple validation
     if(req.query.company_name == null) {
         res.send('Company Name must be provided.');
-    }
-    else if(req.query.address_id == null) {
-        res.send('An Address must be selected');
-    }
+        }
+
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
         company_dal.insert(req.query, function(err,result) {
