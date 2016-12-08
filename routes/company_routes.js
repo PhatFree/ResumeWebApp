@@ -104,6 +104,7 @@ router.get('/delete', function(req, res){
             if(err) {
                 res.send(err);
             }
+            // need to commit
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
                 res.redirect(302, '/company/all');
