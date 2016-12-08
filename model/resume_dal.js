@@ -13,7 +13,7 @@ exports.getAll = function(callback) {
 };
 
 exports.getById = function(school_id, callback) {
-    var query = 'SELECT * FROM resume WHERE resume_id = ?';
+    var query = 'SELECT * FROM resume_view WHERE resume_id = ?';
     var queryData = [school_id];
 
     connection.query(query, queryData, function(err, result) {
