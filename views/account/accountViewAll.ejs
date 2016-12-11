@@ -1,8 +1,4 @@
-<html>
-    <head>
-        <title>Accounts</title>
-    </head>
-    <body>
+<%- include("../includes/header.ejs", {title:"Account - View All"}); %>
         <h1>Accounts</h1>
         <a href="/account/add">Add New Account</a>
 
@@ -24,6 +20,5 @@
             </tr>
             <% } %>
         </table>
-    </body>
 
-</html>
+<%- include("../includes/footer.ejs"); %>

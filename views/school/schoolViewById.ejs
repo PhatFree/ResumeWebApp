@@ -1,14 +1,11 @@
-<html>
-<head>
-    <title>Schools - <%= result[0].school_name %></title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Companies - " + result[0].school_name}); %>
     <h1>Schools</h1>
     <ul>
-        <li>School ID: <%= result[0].school_id%></li>
         <li>School Name: <%= result[0].school_name %></li>
-        <li>Address ID: <%= result[0].address_id %></li>
+        <li>Address: <%= result[0].street %>, <%= result[0].zipcode %></li>
     </ul>
-</body>
 
-</html>
+
+<a href="/school/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

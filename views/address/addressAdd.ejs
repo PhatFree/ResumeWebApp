@@ -1,8 +1,4 @@
-<html>
-<head>
-    <title>Add New Address</title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Add New Adress"}); %>
     <h1>Add New Address</h1>
     <form action="/Address/insert" method="get">
         Address: <input id="street" name="street" type="text"/>
@@ -12,6 +8,5 @@
         <input type="submit" />
 
     </form>
-</body>
 
-</html>
+<%- include("../includes/footer.ejs"); %>

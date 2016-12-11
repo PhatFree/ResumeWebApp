@@ -1,14 +1,11 @@
-<html>
-<head>
-    <title>Resumes - <%= result[0].resume_name %></title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Companies - " + result[0].resume_name}); %>
     <h1>Resume</h1>
     <ul>
-        <li>Resume ID: <%= result[0].resume_id%></li>
         <li>Resume Name: <%= result[0].resume_name %></li>
         <li>User Name : <%= result[0].first_name + ' ' + result[0].last_name%></li>
-    </ul>
-</body>
 
-</html>
+    </ul>
+
+    <a href="/resume/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
