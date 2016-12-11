@@ -1,9 +1,6 @@
-<html>
-    <head>
-        <title>Resumes</title>
-    </head>
-    <body>
-        <h1>Resumes</h1>
+<%- include("../includes/header.ejs", {title:"Resume - View All"}); %>
+
+<h1>Resumes</h1>
         <a href="/resume/add">Add New Resume</a>
         <table border="1">
             <tr><th>Resume Name</th><th>User Name</th><th>Action</th></tr>
@@ -20,6 +17,4 @@
             <% } %>
         </table>
         <a href="/"><< back</a>
-    </body>
-
-</html>
+<%- include("../includes/footer.ejs"); %>
