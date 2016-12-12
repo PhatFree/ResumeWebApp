@@ -1,25 +1,26 @@
 <%- include("../includes/header.ejs", {title:"Account - View All"}); %>
-        <h1>Accounts</h1>
-        <a href="/account/add">Add New Account</a>
+<h1>Accounts</h1>
+<a href="/account/add">Add New Account</a>
 
-        <br/>
+<br/>
 
-        <table border="1">
-            <tr><th>email</th><th>First name</th><th>Last name</th><th>Action</th></tr>
-            <% for(var i=0; result.length > i; i++ ) { %>
-            <tr>
-                <td><a href="/account/?account_id=<%= result[i].account_id %>"><%= result[i].email %></a></td>
-                <td><%= result[i].first_name %></td>
-                <td><%= result[i].last_name %></td>
-                <td>
-                    <form action="/account/delete">
-                        <input type="hidden" name="account_id" id="account_id" value="<%=result[i].account_id%>"/>
-                        <input type="submit" value="Delete"/>
-                    </form>
-                </td>
-            </tr>
-            <% } %>
-        </table>
+<table border="1">
+    <tr><th>email</th><th>First name</th><th>Last name</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/account/?account_id=<%= result[i].account_id %>"><%= result[i].email %></a></td>
+        <td><%= result[i].first_name %></td>
+        <td><%= result[i].last_name %></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='edit/?account_id=<%= result[i].account_id %>'">Edit</button>
+            <form action="/account/delete" style="display:inline;">
+                <input type="hidden" name="account_id" id="account_id" value="<%=result[i].account_id%>"/>
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
 <a href="/"><< back</a>
 
 <%- include("../includes/footer.ejs"); %>

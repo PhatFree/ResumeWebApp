@@ -45,3 +45,22 @@ exports.delete = function(school_id, callback) {
     });
 
 };
+
+exports.update = function(params, callback) {
+    var query = 'UPDATE school SET school_name = ?, address_id = ? WHERE school_id = ? ';
+    var queryData = [params.school_name, params.address_id, params.school_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
+
+exports.edit = function(school_id, callback) {
+    var query = 'CALL school_getinfo(?)';
+    var queryData = [school_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
